@@ -194,4 +194,35 @@ public class ProdottoDAO {
 
         return p;
     }
+    
+    public List<BeanProdotto> doRetrieveTopVenduti() throws SQLException {
+        String sql = "SELECT p.* " +
+                     "FROM prodotto p " +
+                     "JOIN prodottiOrdine po ON p.id = po.prodotto " +
+                     "WHERE p.isActive = true " +
+                     "GROUP BY p.id " +
+                     "ORDER BY SUM(po.qt) DESC " +
+                     "LIMIT 3";
+
+        Connection con = null;
+        PreparedStatement ps = null;
+        List<BeanProdotto> lista = new ArrayList<>();
+
+        try {
+            con = DBConnect.getConnection();
+            ps  = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                lista.add(mapRow(rs));
+            }
+
+        } finally {
+            if (ps  != null) ps.close();
+            if (con != null) con.close();
+        }
+
+        return lista;
+    }
 }
