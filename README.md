@@ -138,6 +138,3 @@ Nel file `context.xml` (già presente in `META-INF/`) configura le credenziali d
 
 ---
 
-## Autore
-
-Sviluppato da **Jean** — progetto universitario Java EE.
