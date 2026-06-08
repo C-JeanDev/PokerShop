@@ -17,6 +17,6 @@ public class LogoutServlet extends HttpServlet {
             session.invalidate(); // invalida la sessione e rimuove tutti gli attributi
         }
 
-        response.sendRedirect(request.getContextPath() + "/login");
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
     }
 }

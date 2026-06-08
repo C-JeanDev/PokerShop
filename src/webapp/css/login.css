@@ -1,0 +1,144 @@
+@charset "UTF-8";
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Pagina */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    /* Sfondo principale: #212121 */
+    background: #212121;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Testo principale: #FFFFFF */
+    color: #FFFFFF;
+}
+
+/* Container login */
+.login-container {
+    /* Sfondo alternativo (Card): #F5F5F5 */
+    background: #F5F5F5;
+    /* Colore secondario (Accento premium): #D4AF37 */
+    border: 1px solid #D4AF37;
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    /* Forziamo il testo interno scuro per leggerlo sul fondo chiaro della card */
+    color: #212121;
+}
+
+/* Logo */
+.login-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-logo h1 {
+    /* Colore primario (Intestazioni): #1B5E20 */
+    color: #1B5E20;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+.login-logo p {
+    /* Testo secondario (Didascalie/Note): #757575 */
+    color: #757575;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    /* Testo secondario: #757575 */
+    color: #757575;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    /* Sfondo input bianco pulito per contrasto all'interno della card */
+    background: #FFFFFF;
+    /* Bordo neutro usando il Testo secondario: #757575 */
+    border: 1px solid #757575;
+    border-radius: 6px;
+    color: #212121;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    /* Focus sul Colore primario: #1B5E20 */
+    border-color: #1B5E20;
+}
+
+/* Pulsante login */
+.btn-login {
+    width: 100%;
+    padding: 13px;
+    /* Colore primario (Pulsanti CTA): #1B5E20 */
+    background: #1B5E20;
+    /* Testo principale: #FFFFFF */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background 0.2s;
+    margin-top: 6px;
+}
+
+.btn-login:hover {
+    /* Hover con Colore secondario (Elemento in evidenza): #D4AF37 */
+    background: #D4AF37;
+}
+
+/* Messaggio errore */
+.error-box {
+    /* Sfondo leggero basato sul colore Errore/Alert (#D32F2F) */
+    background: rgba(211, 47, 47, 0.1);
+    /* Errore/Alert: #D32F2F */
+    border: 1px solid #D32F2F;
+    border-radius: 6px;
+    color: #D32F2F;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+/* Link registrazione */
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+    /* Testo secondario: #757575 */
+    color: #757575;
+    font-size: 0.9rem;
+}
+
+.register-link a {
+    /* Colore primario: #1B5E20 */
+    color: #1B5E20;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    /* Hover sul Colore secondario: #D4AF37 */
+    color: #D4AF37;
+    text-decoration: underline;
+}

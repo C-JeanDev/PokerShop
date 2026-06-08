@@ -22,35 +22,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Admin – PokerShop</title>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #fff; }
-        header {
-            background: #16213e;
-            border-bottom: 2px solid #e63946;
-            padding: 14px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header h1 { color: #e63946; }
-        a { color: #e63946; text-decoration: none; }
-        .content {
-            max-width: 800px;
-            margin: 60px auto;
-            background: #16213e;
-            border: 1px solid #e63946;
-            border-radius: 10px;
-            padding: 30px;
-        }
-        .badge-admin {
-            background: #e63946;
-            color: #fff;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-left: 8px;
-        }
-    </style>
+  <link rel="stylesheet"
+      href="<%= request.getContextPath() %>/css/dashboardAdmin.css">
 </head>
 <body>
 

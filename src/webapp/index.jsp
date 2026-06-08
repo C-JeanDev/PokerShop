@@ -5,32 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>PokerShop – Home</title>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #fff; }
-        header {
-            background: #16213e;
-            border-bottom: 2px solid #e63946;
-            padding: 14px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header h1 { color: #e63946; font-size: 1.5rem; }
-        header nav a {
-            color: #ccc;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.95rem;
-        }
-        header nav a:hover { color: #e63946; }
-        .welcome {
-            max-width: 700px;
-            margin: 80px auto;
-            text-align: center;
-        }
-        .welcome h2 { font-size: 2rem; margin-bottom: 12px; }
-        .welcome p  { color: #aaa; }
-    </style>
+   <link rel="stylesheet"
+      href="<%= request.getContextPath() %>/css/index.css">
 </head>
 <body>
 
@@ -65,7 +41,7 @@
         <p>Esplora il nostro catalogo di prodotti per il poker.</p>
     <% } else { %>
         <h2>Benvenuto su PokerShop ♠</h2>
-        <p>Effettua il <a href="<%= request.getContextPath() %>/login" style="color:#e63946;">login</a> per accedere al tuo account.</p>
+        <p>Effettua il <a href="<%= request.getContextPath() %>/login" >login</a> per accedere al tuo account.</p>
     <% } %>
 </div>
 

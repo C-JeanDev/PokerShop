@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+body { 
+    font-family: 'Segoe UI', sans-serif; 
+    /* Sfondo principale scuro: #212121 */
+    background: #212121; 
+    /* Testo principale: #FFFFFF */
+    color: #FFFFFF; 
+    margin: 0;
+}
+
+/* Navigazione Superiore */
+header {
+    /* Sfondo scuro: #212121 */
+    background: #212121;
+    /* Linea di branding - Verde Primario: #1B5E20 */
+    border-bottom: 2px solid #1B5E20;
+    padding: 14px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Ombra per dare profondità e staccare l'header dal body */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); 
+}
+
+header h1 { 
+    /* Colore primario verde per il brand */
+    color: #1B5E20; 
+    font-size: 1.5rem; 
+    margin: 0;
+}
+
+header nav a {
+    /* Testo dei link in bianco per massimo contrasto */
+    color: #FFFFFF;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+header nav a:hover { 
+    /* Accento Oro Premium al passaggio del mouse: #D4AF37 */
+    color: #D4AF37; 
+}
+
+/* Box di Benvenuto (Card) */
+.welcome {
+    max-width: 700px;
+    margin: 80px auto;
+    text-align: center;
+    
+    /* Usiamo lo Sfondo Alternativo chiaro della palette per creare la card */
+    background: #F5F5F5; 
+    /* Bordino raffinato in Oro Premium: #D4AF37 */
+    border: 1px solid #D4AF37; 
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    
+    /* Testo scuro per garantire una leggibilità perfetta sulla card chiara */
+    color: #212121; 
+}
+
+.welcome h2 { 
+    /* Titolo in Verde Primario: #1B5E20 */
+    color: #1B5E20;
+    font-size: 2rem; 
+    margin-bottom: 12px; 
+}
+
+.welcome p { 
+    /* Testo secondario/didascalia in grigio: #757575 */
+    color: #757575; 
+    font-size: 1.05rem;
+}
+
+/* Gestione del link di login dentro il testo di benvenuto */
+.welcome p a {
+    /* Verde Primario per risaltare sullo sfondo chiaro */
+    color: #1B5E20;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.welcome p a:hover {
+    /* Cambia in Oro Premium quando ci si passa sopra */
+    color: #D4AF37;
+    text-decoration: underline;
+}

@@ -1,0 +1,142 @@
+@charset "UTF-8";
+ * { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    /* Sfondo principale pagina: #212121 */
+    background: #212121;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 16px;
+}
+
+.container {
+    /* Sfondo alternativo (usato per le card): #F5F5F5 */
+    background: #F5F5F5;
+    /* Colore secondario (accento premium): #D4AF37 */
+    border: 1px solid #D4AF37;
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    /* Colore scuro per i testi generici all'interno del box chiaro */
+    color: #212121;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 28px;
+}
+.logo h1 { 
+    /* Colore primario (intestazioni): #1B5E20 */
+    color: #1B5E20; 
+    font-size: 1.8rem; 
+    letter-spacing: 2px; 
+}
+.logo p { 
+    /* Testo secondario (note/didascalie): #757575 */
+    color: #757575; 
+    font-size: 0.9rem; 
+    margin-top: 4px; 
+}
+
+.row {
+    display: flex;
+    gap: 14px;
+}
+.row .form-group { flex: 1; }
+
+.form-group {
+    margin-bottom: 18px;
+}
+.form-group label {
+    display: block;
+    /* Testo secondario: #757575 */
+    color: #757575;
+    margin-bottom: 6px;
+    font-size: 0.88rem;
+}
+.form-group input {
+    width: 100%;
+    padding: 11px 13px;
+    /* Sfondo input bianco per contrasto ottimale dentro la card chiara */
+    background: #FFFFFF;
+    /* Bordo neutro usando il colore del testo secondario: #757575 */
+    border: 1px solid #757575;
+    border-radius: 6px;
+    color: #212121;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+.form-group input:focus {
+    outline: none;
+    /* Focus con il Colore primario: #1B5E20 */
+    border-color: #1B5E20;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 13px;
+    /* Colore primario (pulsanti CTA): #1B5E20 */
+    background: #1B5E20;
+    /* Testo principale: #FFFFFF */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background 0.2s;
+    margin-top: 4px;
+}
+.btn-register:hover { 
+    /* Hover con Colore secondario (elemento in evidenza): #D4AF37 */
+    background: #D4AF37; 
+}
+
+.error-box {
+    /* Sfondo trasparente basato sul colore Errore/Alert (#D32F2F) */
+    background: rgba(211, 47, 47, 0.1);
+    /* Errore/Alert: #D32F2F */
+    border: 1px solid #D32F2F;
+    border-radius: 6px;
+    color: #D32F2F;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    /* Testo secondario: #757575 */
+    color: #757575;
+    font-size: 0.9rem;
+}
+.login-link a { 
+    /* Colore primario: #1B5E20 */
+    color: #1B5E20; 
+    text-decoration: none; 
+}
+.login-link a:hover { 
+    /* Colore secondario all'hover: #D4AF37 */
+    color: #D4AF37;
+    text-decoration: underline; 
+}
+
+.section-label {
+    /* Colore primario (usato per dividere e titolare le macro-sezioni): #1B5E20 */
+    color: #1B5E20;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 20px 0 10px;
+    /* Linea divisoria sottile con il colore del testo secondario */
+    border-bottom: 1px solid #757575;
+    padding-bottom: 4px;
+}
