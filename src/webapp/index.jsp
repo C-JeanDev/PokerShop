@@ -26,7 +26,7 @@
         <a href="#">Categorie</a>
         <% if (utente != null) { %>
             <% if (utente.isAdmin()) { %>
-                <a href="<%= request.getContextPath() %>/admin/dashboard.jsp">Admin</a>
+                <a href="<%= request.getContextPath() %>/admin/dashboard">Admin</a>
             <% } %>
             <a href="<%= request.getContextPath() %>/logout">Logout (<%= utente.getNome() %>)</a>
         <% } else { %>
