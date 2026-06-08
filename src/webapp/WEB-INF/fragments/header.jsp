@@ -22,11 +22,11 @@
         </a>
         <% if (_utente != null) { %>
             <% if (_utente.isAdmin()) { %>
-                <a href="<%= request.getContextPath() %>/admin/dashboard.jsp"
+                <a href="<%= request.getContextPath() %>/admin/dashboard"
                    class="nav-link nav-admin">⚙ Admin</a>
             <% } %>
             <a href="<%= request.getContextPath() %>/logout" class="nav-link nav-user">
-                👤 <%= _utente.getNome() %>
+                👤 Logout 
             </a>
         <% } else { %>
             <a href="<%= request.getContextPath() %>/login"
@@ -42,9 +42,9 @@
     <a href="<%= request.getContextPath() %>/carrello" class="mobile-nav-link">🛒 Carrello</a>
     <% if (_utente != null) { %>
         <% if (_utente.isAdmin()) { %>
-            <a href="<%= request.getContextPath() %>/admin/dashboard.jsp" class="mobile-nav-link mobile-admin">⚙ Admin</a>
+            <a href="<%= request.getContextPath() %>/admin/dashboard" class="mobile-nav-link mobile-admin">⚙ Admin</a>
         <% } %>
-        <a href="<%= request.getContextPath() %>/logout" class="mobile-nav-link">Logout (<%= _utente.getNome() %>)</a>
+        <a href="<%= request.getContextPath() %>/logout" class="mobile-nav-link">Logout </a>
     <% } else { %>
         <a href="<%= request.getContextPath() %>/login" class="mobile-nav-link">Login</a>
     <% } %>
