@@ -196,12 +196,14 @@ public class ProdottoDAO {
     }
     
     public List<BeanProdotto> doRetrieveTopVenduti() throws SQLException {
+        // LEFT JOIN + COALESCE: i prodotti con 0 vendite valgono 0 (non vengono esclusi).
+        // In questo modo, se non ci sono ordini, vengono restituiti i primi 3 per id.
         String sql = "SELECT p.* " +
                      "FROM prodotto p " +
-                     "JOIN prodottiOrdine po ON p.id = po.prodotto " +
+                     "LEFT JOIN prodottiOrdine po ON p.id = po.prodotto " +
                      "WHERE p.isActive = true " +
                      "GROUP BY p.id " +
-                     "ORDER BY SUM(po.qt) DESC " +
+                     "ORDER BY COALESCE(SUM(po.qt), 0) DESC, p.id ASC " +
                      "LIMIT 3";
 
         Connection con = null;

@@ -49,7 +49,7 @@ create table prodotto(
 
 create table foto(
 	nome char(20) primary key,
-    _path char(150) not null,
+    _path varchar(150) not null,
     prodotto int not null,
     constraint prd 
 		foreign key (prodotto) references prodotto(id)

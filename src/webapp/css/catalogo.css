@@ -1,0 +1,544 @@
+@charset "UTF-8";
+
+/* =============================================
+   CATALOGO PRODOTTI - PokerShop
+   ============================================= */
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #212121;
+    color: #FFFFFF;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* ── Page Title ───────────────────────────── */
+.page-title-bar {
+    background: linear-gradient(135deg, #1B5E20 0%, #2a2a2a 100%);
+    padding: 36px 30px 30px;
+    border-bottom: 2px solid rgba(212,175,55,0.3);
+}
+
+.page-title-bar h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+}
+.page-title-bar p {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem;
+}
+
+/* ── Layout ───────────────────────────────── */
+.catalogo-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: calc(100vh - 64px);
+}
+
+/* ── Sidebar filtri ───────────────────────── */
+.sidebar {
+    background: #1e1e1e;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    padding: 28px 20px;
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+}
+
+.sidebar-section {
+    margin-bottom: 32px;
+}
+
+.sidebar-section h3 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #D4AF37;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+
+/* Categorie chips */
+.cat-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cat-list li button {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.75);
+    padding: 9px 14px;
+    border-radius: 7px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cat-list li button:hover {
+    background: rgba(27,94,32,0.3);
+    border-color: #1B5E20;
+    color: #FFFFFF;
+}
+.cat-list li button.active {
+    background: #1B5E20;
+    border-color: #1B5E20;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+.cat-count {
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+.cat-list li button.active .cat-count {
+    background: rgba(255,255,255,0.2);
+    color: #FFF;
+}
+
+/* Range prezzo */
+.price-range-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.price-inputs {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.price-inputs input[type="number"] {
+    width: 90px;
+    background: #2a2a2a;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #FFFFFF;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+.price-inputs input[type="number"]:focus {
+    outline: none;
+    border-color: #1B5E20;
+}
+.price-sep { color: #757575; font-size: 0.85rem; }
+
+.price-slider-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.price-slider-row input[type="range"] {
+    width: 100%;
+    accent-color: #1B5E20;
+    cursor: pointer;
+}
+.price-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #757575;
+}
+
+.btn-filter {
+    width: 100%;
+    padding: 11px;
+    background: #1B5E20;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 7px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+    margin-top: 8px;
+}
+.btn-filter:hover { background: #D4AF37; color: #212121; }
+
+.btn-reset {
+    width: 100%;
+    padding: 9px;
+    background: transparent;
+    color: #757575;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 7px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    margin-top: 6px;
+}
+.btn-reset:hover { color: #D32F2F; border-color: #D32F2F; }
+
+/* Ordinamento */
+.sort-select {
+    width: 100%;
+    background: #2a2a2a;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #FFFFFF;
+    padding: 9px 12px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: auto;
+    transition: border-color 0.2s;
+}
+.sort-select:focus {
+    outline: none;
+    border-color: #1B5E20;
+}
+
+/* ── Main Content ─────────────────────────── */
+.catalogo-main {
+    padding: 28px 28px 48px;
+}
+
+/* Search bar AJAX */
+.search-wrap {
+    position: relative;
+    margin-bottom: 28px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 14px 20px 14px 48px;
+    background: #2a2a2a;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input::placeholder { color: #757575; }
+.search-input:focus {
+    outline: none;
+    border-color: #1B5E20;
+    box-shadow: 0 0 0 3px rgba(27,94,32,0.15);
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+    color: #757575;
+    pointer-events: none;
+}
+
+/* Dropdown suggerimenti AJAX */
+.search-suggestions {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: #2a2a2a;
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 10px;
+    z-index: 200;
+    max-height: 320px;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    display: none;
+}
+.search-suggestions.visible { display: block; }
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.suggestion-item:last-child { border-bottom: none; }
+.suggestion-item:hover { background: rgba(27,94,32,0.25); }
+
+.suggestion-img {
+    width: 42px;
+    height: 42px;
+    border-radius: 6px;
+    object-fit: cover;
+    background: #333;
+    flex-shrink: 0;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.2);
+}
+.suggestion-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+
+.suggestion-info { flex: 1; min-width: 0; }
+.suggestion-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.suggestion-cat {
+    font-size: 0.75rem;
+    color: #757575;
+    margin-top: 2px;
+}
+.suggestion-price {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #D4AF37;
+    white-space: nowrap;
+}
+
+.suggestion-noresult {
+    padding: 16px;
+    color: #757575;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Risultati bar */
+.results-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.results-count {
+    font-size: 0.9rem;
+    color: #757575;
+}
+.results-count strong { color: #D4AF37; }
+.active-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.filter-tag {
+    background: rgba(27,94,32,0.2);
+    border: 1px solid rgba(27,94,32,0.5);
+    color: #4CAF50;
+    font-size: 0.78rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.filter-tag button {
+    background: none;
+    border: none;
+    color: #4CAF50;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+    line-height: 1;
+}
+.filter-tag button:hover { color: #D32F2F; }
+
+/* ── Griglia prodotti ─────────────────────── */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 22px;
+}
+
+.prod-card {
+    background: #2a2a2a;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+}
+.prod-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.4);
+    border-color: rgba(212,175,55,0.4);
+}
+
+.prod-card-img-wrap {
+    width: 100%;
+    height: 190px;
+    background: #333;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: rgba(255,255,255,0.1);
+    position: relative;
+}
+.prod-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+.prod-card:hover .prod-card-img-wrap img { transform: scale(1.04); }
+
+.prod-card-sconto {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #D32F2F;
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+}
+
+.prod-card-body {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.prod-cat-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #4CAF50;
+    margin-bottom: 6px;
+}
+
+.prod-name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+    line-height: 1.35;
+}
+
+.prod-desc {
+    font-size: 0.82rem;
+    color: #757575;
+    line-height: 1.5;
+    flex: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 14px;
+}
+
+.prod-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.prod-price-wrap {}
+.prod-price-listino {
+    font-size: 0.78rem;
+    color: #757575;
+    text-decoration: line-through;
+}
+.prod-price-final {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #D4AF37;
+}
+
+.btn-prod-detail {
+    padding: 9px 16px;
+    background: #1B5E20;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+    white-space: nowrap;
+}
+.btn-prod-detail:hover { background: #D4AF37; color: #212121; }
+
+/* Quantità disponibile */
+.prod-stock {
+    font-size: 0.72rem;
+    color: #4CAF50;
+    margin-bottom: 4px;
+}
+.prod-stock.low { color: #D4AF37; }
+.prod-stock.out { color: #D32F2F; }
+
+/* ── Empty State ──────────────────────────── */
+.empty-state {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 80px 20px;
+    color: #757575;
+}
+.empty-state .empty-icon { font-size: 3rem; margin-bottom: 16px; }
+.empty-state p { font-size: 1rem; }
+
+/* ── Spinner ──────────────────────────────── */
+.spinner {
+    grid-column: 1/-1;
+    display: flex;
+    justify-content: center;
+    padding: 60px;
+}
+.spinner-ring {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top-color: #1B5E20;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Responsive ───────────────────────────── */
+@media (max-width: 900px) {
+    .catalogo-layout { grid-template-columns: 1fr; }
+    .sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        padding: 20px;
+    }
+    .cat-list { flex-direction: row; flex-wrap: wrap; }
+    .cat-list li button { width: auto; }
+}
+
+@media (max-width: 600px) {
+    .catalogo-main { padding: 16px; }
+    .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+    .prod-card-img-wrap { height: 140px; }
+    .page-title-bar h1 { font-size: 1.5rem; }
+}
