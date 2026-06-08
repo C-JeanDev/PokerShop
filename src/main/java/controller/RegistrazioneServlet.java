@@ -2,6 +2,7 @@ package controller;
 
 import model.DAO.UtenteDAO;
 import model.bean.BeanUtente;
+import model.utils.PasswordUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -12,7 +13,6 @@ import java.sql.SQLException;
 @WebServlet("/registrazione")
 public class RegistrazioneServlet extends HttpServlet {
 
-	
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -23,9 +23,8 @@ public class RegistrazioneServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/index.jsp");
             return;
         }
-       
-        request.getRequestDispatcher("/WEB-INF/views/registrazione.jsp").forward(request, response);
 
+        request.getRequestDispatcher("/WEB-INF/views/registrazione.jsp").forward(request, response);
     }
 
     @Override
@@ -52,7 +51,6 @@ public class RegistrazioneServlet extends HttpServlet {
 
             request.setAttribute("errore", "Tutti i campi sono obbligatori.");
             request.getRequestDispatcher("/WEB-INF/views/registrazione.jsp").forward(request, response);
-
             return;
         }
 
@@ -60,7 +58,6 @@ public class RegistrazioneServlet extends HttpServlet {
             request.setAttribute("errore", "Le due password non coincidono.");
             request.setAttribute("formData", request.getParameterMap());
             request.getRequestDispatcher("/WEB-INF/views/registrazione.jsp").forward(request, response);
-
             return;
         }
 
@@ -68,7 +65,6 @@ public class RegistrazioneServlet extends HttpServlet {
             request.setAttribute("errore", "Il CAP deve essere composto da 5 cifre.");
             request.setAttribute("formData", request.getParameterMap());
             request.getRequestDispatcher("/WEB-INF/views/registrazione.jsp").forward(request, response);
-
             return;
         }
 
@@ -79,7 +75,6 @@ public class RegistrazioneServlet extends HttpServlet {
             request.setAttribute("errore", "Il numero civico non è valido.");
             request.setAttribute("formData", request.getParameterMap());
             request.getRequestDispatcher("/WEB-INF/views/registrazione.jsp").forward(request, response);
-
             return;
         }
 
@@ -91,7 +86,6 @@ public class RegistrazioneServlet extends HttpServlet {
                 request.setAttribute("errore", "Questa email è già registrata.");
                 request.setAttribute("formData", request.getParameterMap());
                 request.getRequestDispatcher("/WEB-INF/views/registrazione.jsp").forward(request, response);
-
                 return;
             }
 
@@ -100,7 +94,7 @@ public class RegistrazioneServlet extends HttpServlet {
             utente.setNome(nome.trim());
             utente.setCognome(cognome.trim());
             utente.setEmail(email.trim());
-            utente.setPassword(password);
+            utente.setPassword(PasswordUtils.hash(password));
             utente.setAdmin(false);           // i nuovi utenti non sono mai admin
             utente.setIndirizzo(indirizzo.trim());
             utente.setNCivico(nCivico);
@@ -108,6 +102,7 @@ public class RegistrazioneServlet extends HttpServlet {
             utente.setCitta(citta.trim());
 
             utenteDAO.doSave(utente);
+            
 
             // Redirect al login con messaggio di successo
             response.sendRedirect(request.getContextPath() + "/login?registrato=true");

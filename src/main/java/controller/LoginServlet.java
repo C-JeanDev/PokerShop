@@ -2,6 +2,7 @@ package controller;
 
 import model.DAO.UtenteDAO;
 import model.bean.BeanUtente;
+import model.utils.PasswordUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -29,7 +30,9 @@ public class LoginServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
     }
 
-   
+    /**
+     * POST → elabora le credenziali
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -56,7 +59,7 @@ public class LoginServlet extends HttpServlet {
             UtenteDAO utenteDAO = new UtenteDAO();
             BeanUtente utente   = utenteDAO.doRetrieveByKey(email);
 
-            if (utente == null || !utente.getPassword().equals(password)) {
+            if (utente == null || !PasswordUtils.verify(password, utente.getPassword())) {
                 // Credenziali errate: stesso messaggio generico per sicurezza
                 request.setAttribute("errore", "Email o password non corretti.");
                 request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
