@@ -117,6 +117,25 @@ public class UtenteDAO {
         return esiste;
     }
 
+    // Elimina un utente per email (admin)
+    public void doDelete(String email) throws SQLException {
+        String sql = "DELETE FROM utente WHERE email = ?";
+
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DBConnect.getConnection();
+            ps  = con.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.executeUpdate();
+
+        } finally {
+            if (ps  != null) ps.close();
+            if (con != null) con.close();
+        }
+    }
+
     // Mappa una riga del ResultSet in un oggetto Utente
     private BeanUtente mapRow(ResultSet rs) throws SQLException {
         BeanUtente u = new BeanUtente();
