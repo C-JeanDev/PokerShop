@@ -1,140 +1,219 @@
 # ♠ PokerShop
 
-E-commerce dedicato alla vendita di prodotti per il poker, sviluppato in Java EE seguendo il pattern architetturale **MVC** con **DAO** e **Bean**.
+E-commerce dedicato alla vendita di prodotti per il poker, sviluppato come progetto d'esame per il corso **Tecnologie Software per il Web (TSW) – a.a. 2025/2026**.
 
 ---
 
-## Tecnologie utilizzate
+## Stack Tecnologico
 
-- **Java EE** (Servlet, JSP, Filter)
-- **Apache Tomcat 9**
-- **MySQL** con connessione JNDI (connection pool)
-- **Pattern MVC** — Controller (Servlet), Model (DAO + Bean), View (JSP)
-- **Eclipse IDE** (Dynamic Web Project)
+| Layer | Tecnologia |
+|---|---|
+| Server-side | Java EE – Servlet, JSP, Filter |
+| Application Server | Apache Tomcat 9 |
+| Database | MySQL con DataSource JNDI (Connection Pool) |
+| Driver DB | mysql-connector-j 9.7.0 |
+| Front-end | HTML5, CSS3, JavaScript (ES6+) |
+| Comunicazione asincrona | AJAX + Fetch API con JSON |
+| Pattern architetturale | MVC (Model–View–Controller) |
+| Sicurezza password | SHA-256 (cifratura one-way) |
+| IDE | Eclipse (Dynamic Web Project) |
 
 ---
 
-## Struttura del progetto
+## Architettura MVC
+
+```
+Controller  →  src/main/java/controller/        (Servlet + Filter)
+Model       →  src/main/java/model/bean/        (Bean)
+               src/main/java/model/DAO/         (Data Access Object)
+               src/main/java/model/utils/       (Utility)
+View        →  src/webapp/WEB-INF/views/        (JSP – non accessibili direttamente)
+```
+
+L'HTML è generato **esclusivamente dalle JSP**. Le Servlet non producono mai output HTML diretto.
+
+---
+
+## Struttura del Progetto
 
 ```
 PokerShop/
 ├── SQL/
-│   ├── pokerShopCreation.sql       # Schema del database
-│   └── pokerShopPopulation.sql     # Dati di esempio
+│   ├── pokerShopCreation.sql
+│   └── pokerShopPopulation.sql
 │
 └── src/
     ├── main/java/
-    │   ├── controller/             # Servlet e filtri (layer C)
-    │   │   ├── LoginServlet.java
-    │   │   ├── LogoutServlet.java
-    │   │   ├── RegistrazioneServlet.java
-    │   │   └── AuthFilter.java
+    │   ├── controller/
+    │   │   ├── AuthFilter.java               ← Filtro servlet (protegge /admin/*)
+    │   │   ├── LoginServlet.java             ← GET: mostra login / POST: autentica
+    │   │   ├── LogoutServlet.java            ← Invalida la sessione
+    │   │   ├── RegistrazioneServlet.java     ← GET: mostra form / POST: salva utente
+    │   │   └── admin/
+    │   │       ├── AdminDashboardServlet.java
+    │   │       ├── AdminProdottiServlet.java ← CRUD prodotti
+    │   │       ├── AdminUtentiServlet.java   ← Visualizza ed elimina utenti
+    │   │       └── AdminOrdiniServlet.java   ← Ordini con filtri data/cliente
     │   │
     │   └── model/
-    │       ├── bean/               # Oggetti di dominio (layer M)
+    │       ├── bean/
     │       │   ├── BeanUtente.java
     │       │   ├── BeanProdotto.java
-    │       │   ├── BeanCarrello.java
-    │       │   ├── BeanOrdine.java
     │       │   ├── BeanCategoria.java
+    │       │   ├── BeanCarrello.java
+    │       │   ├── BeanProdottoCarrello.java
+    │       │   ├── BeanOrdine.java
+    │       │   ├── BeanProdottoOrdine.java
     │       │   ├── BeanRecensione.java
     │       │   └── BeanFoto.java
-    │       │
-    │       └── DAO/                # Accesso al database
-    │           ├── DBConnect.java
-    │           ├── UtenteDAO.java
-    │           ├── ProdottoDAO.java
-    │           ├── CarrelloDAO.java
-    │           ├── OrdineDAO.java
-    │           ├── CategoriaDAO.java
-    │           ├── RecensioneDAO.java
-    │           └── FotoDAO.java
+    │       ├── DAO/
+    │       │   ├── DBConnect.java            ← Connessione via JNDI DataSource
+    │       │   ├── UtenteDAO.java
+    │       │   ├── ProdottoDAO.java
+    │       │   ├── CategoriaDAO.java
+    │       │   ├── CarrelloDAO.java
+    │       │   ├── OrdineDAO.java
+    │       │   ├── RecensioneDAO.java
+    │       │   └── FotoDAO.java
+    │       └── utils/
+    │           └── PasswordUtils.java        ← Hash SHA-256 + verify
     │
     └── webapp/
-        ├── index.jsp               # Home page
-        ├── registrazione.jsp       # Form di registrazione
-        ├── admin/
-        │   └── dashboard.jsp       # Area admin (protetta)
+        ├── index.jsp
+        ├── registrazione.jsp
+        ├── META-INF/
+        │   └── context.xml                  ← Configurazione DataSource JNDI
         └── WEB-INF/
             ├── web.xml
-            ├── views/
-            │   └── login.jsp       # Form di login
-            └── lib/
-                └── mysql-connector-j-9.7.0.jar
+            ├── lib/
+            │   └── mysql-connector-j-9.7.0.jar
+            └── views/
+                ├── login.jsp
+                └── admin/
+                    ├── header.jsp            ← Fragment riutilizzabile (sidebar)
+                    ├── footer.jsp            ← Fragment riutilizzabile
+                    ├── dashboard.jsp
+                    ├── prodotti.jsp
+                    ├── prodotto-form.jsp
+                    ├── utenti.jsp
+                    └── ordini.jsp
 ```
 
 ---
 
-## Schema database
+## Schema Database
 
-Il database `pokerShop` è composto da 8 tabelle:
+Il database `pokerShop` è composto da 9 tabelle con vincoli di integrità referenziale:
 
-| Tabella | Descrizione |
-|---|---|
-| `utente` | Utenti registrati (clienti e admin) |
-| `prodotto` | Catalogo prodotti con prezzo, IVA e quantità |
-| `categoria` | Categorie dei prodotti |
-| `foto` | Immagini associate ai prodotti |
-| `carrello` | Carrello di ogni utente |
-| `prodottiCarrello` | Prodotti nel carrello con quantità |
-| `ordine` | Ordini effettuati |
-| `prodottiOrdine` | Dettaglio prodotti per ordine |
-| `recensione` | Recensioni degli utenti sui prodotti |
+| Tabella | Descrizione | Chiave |
+|---|---|---|
+| `utente` | Clienti e amministratori | `email` (PK) |
+| `prodotto` | Catalogo con prezzo, IVA, quantità, stato attivo | `id` (PK) |
+| `categoria` | Categorie dei prodotti | `id` (PK) |
+| `foto` | Immagini associate ai prodotti | `nome` (PK) |
+| `carrello` | Carrello per utente | `id` (PK) |
+| `prodottiCarrello` | Righe carrello con quantità | `(carrello, prodotto)` |
+| `ordine` | Ordini effettuati con totale e stato | `id` (PK) |
+| `prodottiOrdine` | Righe ordine con **prezzo e IVA storici** | `(ordine, prodotto)` |
+| `recensione` | Recensioni degli utenti sui prodotti | `id` (PK) |
 
----
-
-## Funzionalità implementate
-
-- **Registrazione** — form completo con nome, cognome, email, password, indirizzo, n° civico, CAP, città
-- **Login / Logout** — autenticazione tramite email e password con gestione sessione
-- **Ruoli** — distinzione tra utente normale e amministratore (`isAdmin`)
-- **Protezione pagine admin** — filtro `AuthFilter` su `/admin/*`
+> **Integrità storica:** prezzo e IVA sono salvati direttamente nella riga d'ordine (`prodottiOrdine`), così le variazioni future del catalogo non alterano gli ordini passati.
 
 ---
 
-## Configurazione e avvio
+## Funzionalità
+
+### Area Cliente
+- Registrazione con validazione campi (nome, cognome, email, password, indirizzo, CAP, città)
+- Verifica in tempo reale disponibilità email tramite AJAX
+- Login e logout con gestione sessione (`HttpSession`)
+- Cifratura password con SHA-256
+- Navigazione catalogo prodotti con barra di ricerca AJAX e suggerimenti dinamici
+- Gestione carrello (aggiunta, modifica quantità, rimozione)
+- Conferma ordine con svuotamento carrello
+- Storico ordini del cliente
+- Messaggi di conferma per tutte le azioni eseguite
+
+### Area Amministratore
+- Accesso protetto tramite `AuthFilter` + controllo ruolo `isAdmin`
+- Dashboard con contatori in tempo reale (prodotti, utenti, ordini)
+- **CRUD Prodotti**: inserimento, modifica, visualizzazione, cancellazione con richiesta di conferma
+- Visualizzazione elenco utenti ed eliminazione
+- Visualizzazione di tutti gli ordini
+- **Filtro ordini per intervallo di date** (dal / al)
+- **Filtro ordini per cliente** (select popolato dinamicamente)
+
+### Sicurezza
+- `PreparedStatement` per tutte le query → prevenzione SQL Injection
+- Password cifrate SHA-256 nel database
+- `AuthFilter` su `/admin/*` → pagine admin inaccessibili senza sessione admin
+- JSP protette in `WEB-INF/views/` → non raggiungibili direttamente via URL
+- Pagine di errore personalizzate per codici 404, 500, 403
+
+### Pattern e Architettura
+- Pattern MVC rispettato
+- Fragment JSP (`header.jsp`, `footer.jsp`) per componenti riutilizzabili
+- DataSource JNDI con Connection Pool configurato in `context.xml`
+- Package separati: `controller`, `controller.admin`, `model.bean`, `model.DAO`, `model.utils`
+- Validazione form lato client con espressioni regolari e JavaScript
+- Messaggi di errore inline (nessun `alert()`)
+- Sito completamente responsive con media query
+
+---
+
+## Configurazione e Avvio
 
 ### 1. Database
-
-Esegui i due script SQL in ordine:
 
 ```sql
 source SQL/pokerShopCreation.sql
 source SQL/pokerShopPopulation.sql
 ```
 
-### 2. Datasource JNDI
+### 2. DataSource JNDI
 
-Nel file `context.xml` (già presente in `META-INF/`) configura le credenziali del tuo MySQL:
+Modifica `src/webapp/META-INF/context.xml` con le tue credenziali MySQL:
 
 ```xml
 <Resource name="jdbc/pokerShop"
           auth="Container"
           type="javax.sql.DataSource"
+          driverClassName="com.mysql.cj.jdbc.Driver"
           username="root"
           password="TUA_PASSWORD"
-          driverClassName="com.mysql.cj.jdbc.Driver"
-          url="jdbc:mysql://localhost:3306/pokerShop"
-          maxActive="10" maxIdle="5" />
+          url="jdbc:mysql://localhost:3306/pokerShop"/>
 ```
 
-### 3. Avvio in Eclipse
+### 3. Crea il primo admin
 
-1. Importa il progetto come **Dynamic Web Project**
-2. Tasto destro → **Run As → Run on Server** → seleziona Tomcat 9
-3. Apri il browser su `http://localhost:8080/PokerShop`
+```sql
+INSERT INTO utente (email, nome, cognome, _password, isAdmin, indirizzo, _ncivico, cap, citta)
+VALUES (
+    'admin@pokershop.it', 'Admin', 'PokerShop',
+    '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9',
+    true, 'Via Roma', 1, '00100', 'Roma'
+);
+```
+
+L'hash corrisponde alla password `admin123`. Sostituiscilo con l'hash della tua password preferita.
+
+### 4. Avvio in Eclipse
+
+1. Importa come **Dynamic Web Project**
+2. Tasto destro → **Run As → Run on Server** → Tomcat 9
+3. Apri `http://localhost:8080/PokerShop`
 
 ---
 
-## URL disponibili
+## URL Principali
 
-| URL | Descrizione |
-|---|---|
-| `/` | Home page |
-| `/login` | Pagina di login |
-| `/logout` | Logout e invalidazione sessione |
-| `/registrazione` | Form di registrazione |
-| `/admin/dashboard.jsp` | Dashboard admin (solo admin) |
-
----
-
+| URL | Accesso | Descrizione |
+|---|---|---|
+| `/` | Pubblica | Home page |
+| `/login` | Pubblica | Login utente |
+| `/logout` | Autenticato | Logout |
+| `/registrazione` | Pubblica | Registrazione nuovo utente |
+| `/admin/dashboard` | Admin | Dashboard con statistiche |
+| `/admin/prodotti` | Admin | CRUD prodotti |
+| `/admin/utenti` | Admin | Gestione utenti |
+| `/admin/ordini` | Admin | Ordini con filtri |
