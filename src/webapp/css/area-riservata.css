@@ -1,0 +1,551 @@
+@charset "UTF-8";
+
+/* =============================================
+   AREA RISERVATA - PokerShop
+   ============================================= */
+
+/* ── Wrapper Principale ───────────────────── */
+.ar-wrapper {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 24px;
+    color: #FFFFFF;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ── Hero / Intestazione ──────────────────── */
+.ar-hero {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(135deg, rgba(27,94,32,0.15) 0%, #2a2a2a 100%);
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 12px;
+    padding: 24px 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.ar-hero-icon {
+    font-size: 3.5rem;
+    color: #D4AF37;
+    line-height: 1;
+    text-shadow: 0 2px 10px rgba(212,175,55,0.3);
+}
+
+.ar-hero h1 {
+    font-size: 2rem;
+    color: #FFFFFF;
+    margin: 0 0 4px 0;
+    font-weight: 800;
+}
+
+.ar-hero p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.75);
+    margin: 0;
+}
+
+.ar-hero p strong {
+    color: #D4AF37;
+}
+
+/* ── Messaggi di Feedback ─────────────────── */
+.ar-alert {
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ar-alert-ok {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+    border: 1px solid rgba(76, 175, 80, 0.4);
+}
+
+.ar-alert-err {
+    background: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+    border: 1px solid rgba(244, 67, 54, 0.4);
+}
+
+/* ── Sezioni Comuni ───────────────────────── */
+.ar-section {
+    background: #2a2a2a;
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.ar-section-title {
+    font-size: 1.4rem;
+    color: #D4AF37;
+    margin-top: 0;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+
+/* ── Grid Informazioni (Sola lettura) ─────── */
+.ar-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+
+
+.ar-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ar-info-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #757575;
+}
+
+.ar-info-value {
+    font-size: 1.1rem;
+    color: #FFFFFF;
+}
+
+/* ── Form di Modifica Dati ────────────────── */
+.ar-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.ar-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ar-form-group label {
+    font-size: 0.85rem;
+    color: #ccc;
+    font-weight: 600;
+}
+
+.ar-form-group input {
+    background: #1a1a1a;
+    border: 1px solid rgba(212,175,55,0.3);
+    color: #FFFFFF;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.ar-form-group input:focus {
+    border-color: #D4AF37;
+    box-shadow: 0 0 0 2px rgba(212,175,55,0.2);
+}
+
+.ar-form-group input::placeholder {
+    color: #757575;
+}
+
+/* ── Sezione Cambio Password ──────────────── */
+.ar-pw-section {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px dashed rgba(255,255,255,0.1);
+}
+
+.ar-pw-title {
+    font-size: 1.1rem;
+    color: #FFFFFF;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.ar-optional {
+    font-size: 0.8rem;
+    color: #757575;
+    font-weight: normal;
+}
+
+/* ── Bottoni ──────────────────────────────── */
+.ar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    font-family: inherit;
+}
+
+.ar-btn-primary {
+    background: #1B5E20;
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(27,94,32,0.3);
+}
+.ar-btn-primary:hover {
+    background: #D4AF37;
+    color: #212121;
+    transform: translateY(-2px);
+}
+
+.ar-btn-outline {
+    background: transparent;
+    border: 1px solid #D4AF37;
+    color: #D4AF37;
+}
+.ar-btn-outline:hover {
+    background: #D4AF37;
+    color: #212121;
+}
+
+.ar-btn-ghost {
+    background: transparent;
+    color: #757575;
+}
+.ar-btn-ghost:hover {
+    color: #FFFFFF;
+}
+
+.ar-form-actions {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+}
+
+/* ── Stato Nessun Ordine ──────────────────── */
+.ar-empty {
+    text-align: center;
+    padding: 48px 20px;
+}
+
+.ar-empty span {
+    font-size: 4rem;
+    color: rgba(255,255,255,0.1);
+    display: block;
+    margin-bottom: 16px;
+}
+
+.ar-empty p {
+    color: #757575;
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+}
+
+.ar-orders-count {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 24px;
+}
+
+.ar-orders-count strong {
+    color: #D4AF37;
+}
+
+/* ── Fatture (Ordini) ─────────────────────── */
+.fattura {
+    background: #212121;
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 10px;
+    margin-bottom: 32px;
+    overflow: hidden;
+}
+
+/* Header Fattura e Accordion */
+.fattura-header {
+    background: #1a1a1a;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+.fattura-header:hover {
+    background-color: #242424;
+}
+
+/* Contenuto Collapsable */
+.fattura .fattura-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+}
+
+.fattura.is-open .fattura-content {
+    max-height: 2500px;
+    opacity: 1;
+    transition: max-height 0.6s ease-in, opacity 0.4s ease-in;
+}
+
+/* Animazione freccia */
+.fattura-toggle-icon {
+    display: inline-block;
+    font-size: 0.8rem;
+    margin-right: 8px;
+    transition: transform 0.3s;
+    color: #757575;
+}
+
+.fattura.is-open .fattura-toggle-icon {
+    transform: rotate(180deg);
+    color: #D4AF37;
+}
+
+.fattura-logo {
+    font-weight: 800;
+    color: #D4AF37;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.fattura-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.9rem;
+}
+
+.fattura-num { color: #FFFFFF; font-weight: 700; }
+.fattura-data { color: #757575; }
+
+/* Badge di stato fattura */
+.fattura-stato {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.stato-ne { background: rgba(255,255,255,0.1); color: #ccc; } 
+.stato-sp { background: rgba(212,175,55,0.15); color: #D4AF37; } 
+.stato-co { background: rgba(76, 175, 80, 0.15); color: #4CAF50; } 
+.stato-an { background: rgba(244, 67, 54, 0.15); color: #F44336; } 
+
+.fattura-intestatario {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    padding: 24px;
+    border-bottom: 1px solid #333;
+}
+
+.fattura-block-title {
+    font-size: 0.75rem;
+    color: #D4AF37;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.fattura-block-body {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.fattura-block-body strong {
+    color: #FFFFFF;
+}
+
+/* Tabella Prodotti */
+.fattura-table-wrap {
+    overflow-x: auto;
+}
+
+.fattura-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.fattura-table th, 
+.fattura-table td {
+    padding: 14px 24px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.fattura-table th {
+    background: #1a1a1a;
+    color: #757575;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.col-num {
+    text-align: right !important;
+}
+
+.col-prodotto {
+    width: 45%;
+    color: #FFFFFF;
+}
+
+.fattura-pid {
+    font-size: 0.75rem;
+    color: #757575;
+    margin-left: 6px;
+}
+
+.fattura-riga-tot {
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.fattura-footer-row td {
+    background: rgba(212,175,55,0.05);
+    border-bottom: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.fattura-footer-label {
+    text-align: right;
+    font-weight: 700;
+    color: #D4AF37;
+    font-size: 0.95rem;
+}
+
+.fattura-total {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #D4AF37;
+}
+
+/* Footer Nota Fattura */
+.fattura-note {
+    background: #1a1a1a;
+    padding: 12px 24px;
+    font-size: 0.75rem;
+    color: #757575;
+    text-align: center;
+    border-top: 1px solid #333;
+}
+
+/* ── Mobile View per Fatture ──────────────── */
+.fattura-cards-mobile {
+    display: none;
+    padding: 16px;
+}
+
+.fattura-card-row {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.fattura-card-name {
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.fattura-card-detail {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #757575;
+    margin-bottom: 12px;
+}
+
+.fattura-card-tot {
+    text-align: right;
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.fattura-card-tot strong {
+    color: #FFFFFF;
+}
+
+.fattura-card-grandtot {
+    text-align: right;
+    font-size: 1.2rem;
+    color: #D4AF37;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(212,175,55,0.3);
+}
+
+/* ── Responsive Media Queries ─────────────── */
+@media (max-width: 768px) {
+    .ar-section {
+        padding: 24px 16px;
+    }
+    
+    .ar-info-grid, 
+    .ar-form-grid, 
+    .fattura-intestatario {
+        grid-template-columns: 1fr;
+    }
+
+    .ar-full {
+        grid-column: span 1;
+    }
+
+    .fattura-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .fattura-meta {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    /* Sostituisce la tabella standard con le card responsive */
+    .fattura-table-wrap {
+        display: none;
+    }
+
+    .fattura-cards-mobile {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .ar-form-actions {
+        flex-direction: column;
+    }
+    
+    .ar-btn {
+        width: 100%;
+    }
+
+    .ar-hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+}

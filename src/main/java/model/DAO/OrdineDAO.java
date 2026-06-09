@@ -24,16 +24,14 @@ public class OrdineDAO {
 
         try {
             con = DBConnect.getConnection();
-            con.setAutoCommit(false); // inizio transazione
+            con.setAutoCommit(false);
 
-            // Inserisce l'ordine e recupera l'id generato
             int ordineId;
             PreparedStatement psOrdine = con.prepareStatement(sqlOrdine,
                                              Statement.RETURN_GENERATED_KEYS);
-
             psOrdine.setDouble(1, o.getCostoTot());
             psOrdine.setDate(2, new Date(System.currentTimeMillis()));
-            psOrdine.setString(3, "NE"); // NE = Nuovo/In Elaborazione
+            psOrdine.setString(3, "NE");
             psOrdine.setString(4, o.getUtenteEmail());
             psOrdine.executeUpdate();
 
@@ -42,9 +40,7 @@ public class OrdineDAO {
             ordineId = keys.getInt(1);
             psOrdine.close();
 
-            // Inserisce le righe d'ordine con prezzo e iva storici
             PreparedStatement psRiga = con.prepareStatement(sqlRiga);
-
             for (BeanProdottoOrdine r : righe) {
                 psRiga.setInt(1, ordineId);
                 psRiga.setInt(2, r.getProdottoId());
@@ -53,16 +49,14 @@ public class OrdineDAO {
                 psRiga.setInt(5, r.getQuantita());
                 psRiga.addBatch();
             }
-
             psRiga.executeBatch();
             psRiga.close();
 
-            con.commit(); // conferma transazione
+            con.commit();
 
         } catch (SQLException e) {
-            if (con != null) con.rollback(); // annulla tutto in caso di errore
+            if (con != null) con.rollback();
             throw e;
-
         } finally {
             if (con != null) {
                 con.setAutoCommit(true);
@@ -88,18 +82,14 @@ public class OrdineDAO {
         try {
             con = DBConnect.getConnection();
             ps  = con.prepareStatement(sql);
-
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 lista.add(mapRow(rs));
             }
-
         } finally {
             if (ps  != null) ps.close();
             if (con != null) con.close();
         }
-
         return lista;
     }
 
@@ -116,18 +106,14 @@ public class OrdineDAO {
             ps  = con.prepareStatement(sql);
             ps.setDate(1, da);
             ps.setDate(2, a);
-
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 lista.add(mapRow(rs));
             }
-
         } finally {
             if (ps  != null) ps.close();
             if (con != null) con.close();
         }
-
         return lista;
     }
 
@@ -135,6 +121,40 @@ public class OrdineDAO {
     public List<BeanOrdine> doRetrieveByCliente(String email) throws SQLException {
         String sql = "SELECT * FROM ordine WHERE utente = ? ORDER BY _data DESC";
         return eseguiLista(sql, email);
+    }
+
+    /**
+     * Recupera le righe (prodotti) di un singolo ordine, join con prodotto per il nome.
+     * Usato nella fattura dell'area riservata.
+     */
+    public List<BeanProdottoOrdine> doRetrieveRighe(int ordineId) throws SQLException {
+        String sql = "SELECT po.ordine, po.prodotto, po.iva, po.prezzo, po.qt " +
+                     "FROM prodottiOrdine po " +
+                     "WHERE po.ordine = ?";
+
+        Connection con = null;
+        PreparedStatement ps = null;
+        List<BeanProdottoOrdine> lista = new ArrayList<>();
+
+        try {
+            con = DBConnect.getConnection();
+            ps  = con.prepareStatement(sql);
+            ps.setInt(1, ordineId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                BeanProdottoOrdine r = new BeanProdottoOrdine();
+                r.setOrdineId(rs.getInt("ordine"));
+                r.setProdottoId(rs.getInt("prodotto"));
+                r.setIva(rs.getInt("iva"));
+                r.setPrezzo(rs.getDouble("prezzo"));
+                r.setQuantita(rs.getInt("qt"));
+                lista.add(r);
+            }
+        } finally {
+            if (ps  != null) ps.close();
+            if (con != null) con.close();
+        }
+        return lista;
     }
 
     private List<BeanOrdine> eseguiLista(String sql, String param) throws SQLException {
@@ -146,30 +166,24 @@ public class OrdineDAO {
             con = DBConnect.getConnection();
             ps  = con.prepareStatement(sql);
             ps.setString(1, param);
-
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 lista.add(mapRow(rs));
             }
-
         } finally {
             if (ps  != null) ps.close();
             if (con != null) con.close();
         }
-
         return lista;
     }
 
     private BeanOrdine mapRow(ResultSet rs) throws SQLException {
         BeanOrdine o = new BeanOrdine();
-
         o.setId(rs.getInt("id"));
         o.setCostoTot(rs.getDouble("costoTot"));
         o.setData(rs.getDate("_data"));
         o.setStato(rs.getString("stato"));
         o.setUtenteEmail(rs.getString("utente"));
-
         return o;
     }
 }

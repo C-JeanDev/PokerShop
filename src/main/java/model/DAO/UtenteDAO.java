@@ -21,7 +21,6 @@ public class UtenteDAO {
         try {
             con = DBConnect.getConnection();
             ps  = con.prepareStatement(sql);
-
             ps.setString(1, u.getEmail());
             ps.setString(2, u.getNome());
             ps.setString(3, u.getCognome());
@@ -31,9 +30,44 @@ public class UtenteDAO {
             ps.setInt(7, u.getNCivico());
             ps.setString(8, u.getCap());
             ps.setString(9, u.getCitta());
+            ps.executeUpdate();
+        } finally {
+            if (ps  != null) ps.close();
+            if (con != null) con.close();
+        }
+    }
+
+    /**
+     * Aggiorna i dati anagrafici/indirizzo di un utente.
+     * Se nuovaPassword è null o vuota, mantiene quella esistente.
+     */
+    public void doUpdate(BeanUtente u) throws SQLException {
+        String sql = "UPDATE utente SET nome=?, cognome=?, indirizzo=?, _ncivico=?, cap=?, citta=?" +
+                     (u.getPassword() != null && !u.getPassword().isEmpty()
+                         ? ", _password=?" : "") +
+                     " WHERE email=?";
+
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DBConnect.getConnection();
+            ps  = con.prepareStatement(sql);
+            ps.setString(1, u.getNome());
+            ps.setString(2, u.getCognome());
+            ps.setString(3, u.getIndirizzo());
+            ps.setInt(4, u.getNCivico());
+            ps.setString(5, u.getCap());
+            ps.setString(6, u.getCitta());
+
+            if (u.getPassword() != null && !u.getPassword().isEmpty()) {
+                ps.setString(7, u.getPassword());
+                ps.setString(8, u.getEmail());
+            } else {
+                ps.setString(7, u.getEmail());
+            }
 
             ps.executeUpdate();
-
         } finally {
             if (ps  != null) ps.close();
             if (con != null) con.close();
@@ -52,22 +86,18 @@ public class UtenteDAO {
             con = DBConnect.getConnection();
             ps  = con.prepareStatement(sql);
             ps.setString(1, email);
-
             ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
                 u = mapRow(rs);
             }
-
         } finally {
             if (ps  != null) ps.close();
             if (con != null) con.close();
         }
-
         return u;
     }
 
-    // Recupera tutti gli utenti (area admin, filtro ordini per cliente)
+    // Recupera tutti gli utenti (area admin)
     public List<BeanUtente> doRetrieveAll() throws SQLException {
         String sql = "SELECT * FROM utente";
 
@@ -78,22 +108,18 @@ public class UtenteDAO {
         try {
             con = DBConnect.getConnection();
             ps  = con.prepareStatement(sql);
-
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 lista.add(mapRow(rs));
             }
-
         } finally {
             if (ps  != null) ps.close();
             if (con != null) con.close();
         }
-
         return lista;
     }
 
-    // Controlla se una email esiste già (usato nell'AJAX di registrazione)
+    // Controlla se una email esiste già
     public boolean doCheckEmail(String email) throws SQLException {
         String sql = "SELECT 1 FROM utente WHERE email = ?";
 
@@ -105,15 +131,12 @@ public class UtenteDAO {
             con = DBConnect.getConnection();
             ps  = con.prepareStatement(sql);
             ps.setString(1, email);
-
             ResultSet rs = ps.executeQuery();
             esiste = rs.next();
-
         } finally {
             if (ps  != null) ps.close();
             if (con != null) con.close();
         }
-
         return esiste;
     }
 
@@ -129,17 +152,14 @@ public class UtenteDAO {
             ps  = con.prepareStatement(sql);
             ps.setString(1, email);
             ps.executeUpdate();
-
         } finally {
             if (ps  != null) ps.close();
             if (con != null) con.close();
         }
     }
 
-    // Mappa una riga del ResultSet in un oggetto Utente
     private BeanUtente mapRow(ResultSet rs) throws SQLException {
         BeanUtente u = new BeanUtente();
-
         u.setEmail(rs.getString("email"));
         u.setNome(rs.getString("nome"));
         u.setCognome(rs.getString("cognome"));
@@ -149,7 +169,6 @@ public class UtenteDAO {
         u.setNCivico(rs.getInt("_ncivico"));
         u.setCap(rs.getString("cap"));
         u.setCitta(rs.getString("citta"));
-
         return u;
     }
 }
