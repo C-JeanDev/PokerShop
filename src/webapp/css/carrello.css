@@ -1,0 +1,333 @@
+@charset "UTF-8";
+
+/* =============================================
+   CARRELLO - PokerShop
+   ============================================= */
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #212121;
+    color: #FFFFFF;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* ── Page Title ───────────────────────────── */
+.page-title-bar {
+    background: linear-gradient(135deg, #1B5E20 0%, #2a2a2a 100%);
+    padding: 36px 30px 30px;
+    border-bottom: 2px solid rgba(212,175,55,0.3);
+}
+.page-title-bar h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+}
+.page-title-bar p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+}
+
+/* ── Layout ───────────────────────────────── */
+.carrello-layout {
+    max-width: 1100px;
+    margin: 36px auto 60px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 32px;
+    align-items: start;
+}
+
+@media (max-width: 860px) {
+    .carrello-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ══════════════════════════════════════════
+   LISTA PRODOTTI (colonna sinistra)
+   ══════════════════════════════════════════ */
+
+.carrello-items {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* ── Riga singolo prodotto ────────────────── */
+.cart-row {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 18px;
+    align-items: center;
+    background: #2a2a2a;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 16px;
+    transition: border-color 0.2s;
+}
+.cart-row:hover {
+    border-color: rgba(212,175,55,0.25);
+}
+
+/* Immagine */
+.cart-row-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.cart-row-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cart-row-img-placeholder {
+    font-size: 2.2rem;
+    color: rgba(212,175,55,0.2);
+}
+
+/* Info prodotto */
+.cart-row-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+.cart-row-nome {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.cart-row-nome a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.cart-row-nome a:hover {
+    color: #D4AF37;
+}
+.cart-row-prezzo-unit {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+}
+.cart-row-prezzo-tot {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #D4AF37;
+}
+
+/* Colonna destra: quantità + rimuovi */
+.cart-row-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* Controllo quantità inline */
+.cart-qty-form {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 7px;
+    overflow: hidden;
+}
+.cart-qty-btn {
+    width: 32px;
+    height: 34px;
+    background: rgba(255,255,255,0.05);
+    border: none;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.cart-qty-btn:hover {
+    background: rgba(212,175,55,0.2);
+    color: #D4AF37;
+}
+.cart-qty-input {
+    width: 44px;
+    height: 34px;
+    background: rgba(255,255,255,0.03);
+    border: none;
+    border-left: 1px solid rgba(255,255,255,0.12);
+    border-right: 1px solid rgba(255,255,255,0.12);
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    font-family: inherit;
+    -moz-appearance: textfield;
+}
+.cart-qty-input::-webkit-outer-spin-button,
+.cart-qty-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.cart-qty-input:focus { outline: none; }
+
+/* Bottone rimuovi */
+.btn-rimuovi {
+    background: none;
+    border: 1px solid rgba(211,47,47,0.35);
+    color: rgba(239,154,154,0.8);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.18s;
+    font-family: inherit;
+}
+.btn-rimuovi:hover {
+    background: rgba(211,47,47,0.15);
+    border-color: #D32F2F;
+    color: #EF9A9A;
+}
+
+/* ── Carrello vuoto ───────────────────────── */
+.cart-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255,255,255,0.4);
+}
+.cart-empty-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+}
+.cart-empty p {
+    font-size: 1rem;
+    margin-bottom: 22px;
+}
+.btn-vai-catalogo {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #1B5E20;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+.btn-vai-catalogo:hover { background: #D4AF37; color: #212121; }
+
+/* ══════════════════════════════════════════
+   RIEPILOGO ORDINE (colonna destra)
+   ══════════════════════════════════════════ */
+
+.cart-summary {
+    background: #2a2a2a;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 24px;
+    position: sticky;
+    top: 80px;
+}
+
+.cart-summary h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #D4AF37;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 10px;
+}
+.summary-row.total {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.summary-row.total span:last-child {
+    color: #D4AF37;
+}
+
+/* Bottone procedi */
+.btn-procedi {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
+    border: 1px solid rgba(46,125,50,0.5);
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    text-align: center;
+    text-decoration: none;
+}
+.btn-procedi:hover {
+    background: linear-gradient(135deg, #2E7D32 0%, #388E3C 100%);
+    box-shadow: 0 4px 18px rgba(46,125,50,0.4);
+    transform: translateY(-1px);
+}
+.btn-procedi:disabled {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.3);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Bottone svuota carrello */
+.btn-svuota {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid rgba(211,47,47,0.3);
+    color: rgba(239,154,154,0.7);
+    font-size: 0.82rem;
+    font-weight: 600;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.18s;
+    font-family: inherit;
+}
+.btn-svuota:hover {
+    background: rgba(211,47,47,0.12);
+    border-color: #D32F2F;
+    color: #EF9A9A;
+}
+
+/* ── Messaggio errore DB ──────────────────── */
+.error-box {
+    background: rgba(211,47,47,0.12);
+    border: 1px solid #D32F2F;
+    color: #EF9A9A;
+    padding: 14px 18px;
+    border-radius: 9px;
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+}

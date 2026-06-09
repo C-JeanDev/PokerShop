@@ -1,5 +1,6 @@
 package controller;
 
+import controller.CarrelloServlet;
 import model.DAO.UtenteDAO;
 import model.bean.BeanUtente;
 import model.utils.PasswordUtils;
@@ -70,6 +71,13 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("utente", utente);
             session.setMaxInactiveInterval(30 * 60); // 30 minuti
+
+            // Merge del carrello guest (se presente) nel carrello DB
+            try {
+                CarrelloServlet.mergeGuestCarrello(session, utente.getEmail());
+            } catch (java.sql.SQLException ignored) {
+                // Merge fallito: non blocca il login, il carrello guest viene perso
+            }
 
             // Reindirizza admin o utente normale
             if (utente.isAdmin()) {

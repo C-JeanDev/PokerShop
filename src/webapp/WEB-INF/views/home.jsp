@@ -102,8 +102,9 @@
                                 <span class="product-card-price">€ <%= String.format("%.2f", p.getPrezzoFinale()) %></span>
                             <% } %>
                         </div>
-                        <%-- Il bottone dettaglio non fa nulla per ora (da implementare) --%>
-                        <button class="btn-detail" disabled title="Disponibile a breve">Dettaglio</button>
+                        <%-- Link alla pagina di dettaglio prodotto --%>
+                        <a href="<%= request.getContextPath() %>/prodotto?id=<%= p.getId() %>"
+                           class="btn-detail">Dettaglio</a>
                     </div>
                 </div>
             </div>
