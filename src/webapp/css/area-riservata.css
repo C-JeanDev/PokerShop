@@ -4,12 +4,14 @@
    AREA RISERVATA - PokerShop
    ============================================= */
 
+
+
 /* ── Wrapper Principale ───────────────────── */
 .ar-wrapper {
     max-width: 1000px;
     margin: 40px auto;
     padding: 0 24px;
-    color: #FFFFFF;
+    color: var(--color-text);
     font-family: 'Segoe UI', sans-serif;
 }
 
@@ -18,7 +20,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    background: linear-gradient(135deg, rgba(27,94,32,0.15) 0%, #2a2a2a 100%);
+    background: linear-gradient(135deg, rgba(27,94,32,0.15) 0%, var(--bg-surface) 100%);
     border: 1px solid rgba(212,175,55,0.25);
     border-radius: 12px;
     padding: 24px 32px;
@@ -28,14 +30,14 @@
 
 .ar-hero-icon {
     font-size: 3.5rem;
-    color: #D4AF37;
+    color: var(--color-gold);
     line-height: 1;
     text-shadow: 0 2px 10px rgba(212,175,55,0.3);
 }
 
 .ar-hero h1 {
     font-size: 2rem;
-    color: #FFFFFF;
+    color: var(--color-text);
     margin: 0 0 4px 0;
     font-weight: 800;
 }
@@ -47,7 +49,7 @@
 }
 
 .ar-hero p strong {
-    color: #D4AF37;
+    color: var(--color-gold);
 }
 
 /* ── Messaggi di Feedback ─────────────────── */
@@ -63,19 +65,19 @@
 
 .ar-alert-ok {
     background: rgba(76, 175, 80, 0.1);
-    color: #4CAF50;
+    color: var(--color-success);
     border: 1px solid rgba(76, 175, 80, 0.4);
 }
 
 .ar-alert-err {
     background: rgba(244, 67, 54, 0.1);
-    color: #F44336;
+    color: var(--color-error);
     border: 1px solid rgba(244, 67, 54, 0.4);
 }
 
 /* ── Sezioni Comuni ───────────────────────── */
 .ar-section {
-    background: #2a2a2a;
+    background: var(--bg-surface);
     border: 1px solid rgba(212,175,55,0.15);
     border-radius: 12px;
     padding: 32px;
@@ -85,7 +87,7 @@
 
 .ar-section-title {
     font-size: 1.4rem;
-    color: #D4AF37;
+    color: var(--color-gold);
     margin-top: 0;
     margin-bottom: 24px;
     padding-bottom: 12px;
@@ -113,12 +115,12 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: #757575;
+    color: var(--color-muted);
 }
 
 .ar-info-value {
     font-size: 1.1rem;
-    color: #FFFFFF;
+    color: var(--color-text);
 }
 
 /* ── Form di Modifica Dati ────────────────── */
@@ -141,9 +143,9 @@
 }
 
 .ar-form-group input {
-    background: #1a1a1a;
+    background: var(--bg-deep);
     border: 1px solid rgba(212,175,55,0.3);
-    color: #FFFFFF;
+    color: var(--color-text);
     padding: 12px 14px;
     border-radius: 6px;
     font-size: 1rem;

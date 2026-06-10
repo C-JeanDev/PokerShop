@@ -3,13 +3,33 @@
 /* =============================================
    HEADER / NAVBAR - PokerShop
    Palette:
-     #212121  sfondo principale
-     #1B5E20  verde primario
-     #D4AF37  oro premium (hover / accento)
-     #F5F5F5  sfondo card
-     #757575  testo secondario
-     #D32F2F  errore/alert
+     #var(--bg-main)  sfondo principale
+     var(--color-primary)  verde primario
+     var(--color-gold)  oro premium (hover / accento)
+     var(--color-light)  sfondo card
+     var(--color-muted)  testo secondario
+     var(--color-error)  errore/alert
    ============================================= */
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg-main);
+    color: var(--color-text);
+    margin: 0;
+}
+
+:root {
+    --bg-main:       #212121;
+    --bg-surface:    #2a2a2a;
+    --bg-deep:       #1a1a1a;
+    --color-primary: #1B5E20;
+    --color-gold:    #D4AF37;
+    --color-light:   #F5F5F5;
+    --color-text:    #FFFFFF;
+    --color-muted:   #757575;
+    --color-error:   #D32F2F;
+    --color-success: #4CAF50;
+}
 
 * {
     box-sizing: border-box;
@@ -18,8 +38,8 @@
 }
 
 header {
-    background: #212121;
-    border-bottom: 2px solid #1B5E20;
+    background: var(--bg-main);
+    border-bottom: 2px solid var(--color-primary);
     padding: 0 30px;
     height: 64px;
     display: flex;
@@ -32,7 +52,7 @@ header {
 }
 
 .header-logo {
-    color: #1B5E20;
+    color: var(--color-primary);
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 2px;
@@ -40,7 +60,7 @@ header {
     transition: color 0.2s;
     white-space: nowrap;
 }
-.header-logo:hover { color: #D4AF37; }
+.header-logo:hover { color: var(--color-gold); }
 
 .header-nav {
     display: flex;
@@ -49,7 +69,7 @@ header {
 }
 
 .nav-link {
-    color: #FFFFFF;
+    color: var(--color-text);
     text-decoration: none;
     padding: 8px 14px;
     border-radius: 6px;
@@ -57,48 +77,48 @@ header {
     transition: background 0.2s, color 0.2s;
     white-space: nowrap;
 }
-.nav-link:hover { color: #D4AF37; background: rgba(212, 175, 55, 0.08); }
-.nav-link.active { color: #D4AF37; }
+.nav-link:hover { color: var(--color-gold); background: rgba(212, 175, 55, 0.08); }
+.nav-link.active { color: var(--color-gold); }
 
 .nav-admin {
-    color: #D4AF37;
+    color: var(--color-gold);
     border: 1px solid rgba(212, 175, 55, 0.4);
 }
-.nav-admin:hover { background: rgba(212, 175, 55, 0.15); color: #D4AF37; }
+.nav-admin:hover { background: rgba(212, 175, 55, 0.15); color: var(--color-gold); }
 
 .nav-cta {
-    background: #1B5E20;
-    color: #FFFFFF !important;
+    background: var(--color-primary);
+    color: var(--color-text) !important;
     font-weight: 600;
 }
-.nav-cta:hover { background: #D4AF37 !important; color: #212121 !important; }
+.nav-cta:hover { background: var(--color-gold) !important; color: var(--bg-main) !important; }
 
 .nav-user {
-    color: #D4AF37;
+    color: var(--color-gold);
     font-weight: 500;
 }
-.nav-user:hover { color: #FFFFFF; }
+.nav-user:hover { color: var(--color-text); }
 
 /* Hamburger (mobile) */
 .nav-hamburger {
     display: none;
     background: none;
-    border: 1px solid #757575;
-    color: #FFFFFF;
+    border: 1px solid var(--color-muted);
+    color: var(--color-text);
     font-size: 1.4rem;
     padding: 6px 12px;
     border-radius: 6px;
     cursor: pointer;
     transition: border-color 0.2s;
 }
-.nav-hamburger:hover { border-color: #D4AF37; color: #D4AF37; }
+.nav-hamburger:hover { border-color: var(--color-gold); color: var(--color-gold); }
 
 /* Mobile nav */
 .mobile-nav {
     display: none;
     flex-direction: column;
-    background: #2a2a2a;
-    border-bottom: 2px solid #1B5E20;
+    background: var(--bg-surface);
+    border-bottom: 2px solid var(--color-primary);
     position: sticky;
     top: 64px;
     z-index: 999;
@@ -111,15 +131,15 @@ header {
 }
 .mobile-nav-link {
     display: block;
-    color: #FFFFFF;
+    color: var(--color-text);
     text-decoration: none;
     padding: 14px 24px;
     font-size: 1rem;
     border-bottom: 1px solid rgba(255,255,255,0.05);
     transition: background 0.2s, color 0.2s;
 }
-.mobile-nav-link:hover { background: rgba(27,94,32,0.2); color: #D4AF37; }
-.mobile-admin { color: #D4AF37; }
+.mobile-nav-link:hover { background: rgba(27,94,32,0.2); color: var(--color-gold); }
+.mobile-admin { color: var(--color-gold); }
 
 /* Responsive */
 @media (max-width: 768px) {

@@ -4,13 +4,6 @@
    CARRELLO - PokerShop
    ============================================= */
 
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #212121;
-    color: #FFFFFF;
-    margin: 0;
-    min-height: 100vh;
-}
 
 /* ── Page Title ───────────────────────────── */
 .page-title-bar {

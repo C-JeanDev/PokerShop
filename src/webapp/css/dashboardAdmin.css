@@ -1,12 +1,6 @@
 @charset "UTF-8";
 
-body { 
-    font-family: 'Segoe UI', sans-serif; 
-    /* Sfondo principale: #212121 */
-    background: #212121; 
-    /* Testo principale: #FFFFFF */
-    color: #FFFFFF; 
-}
+
 
 header {
     /* Sfondo scuro: #212121 */
