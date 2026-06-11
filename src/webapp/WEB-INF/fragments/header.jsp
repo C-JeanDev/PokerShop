@@ -35,7 +35,8 @@
                 👤 Ciao, <%= _utente.getNome() %>
             </a>
             
-            <a href="<%= request.getContextPath() %>/logout" class="nav-link nav-logout">
+            <a href="<%= request.getContextPath() %>/logout" class="nav-link nav-logout"
+               onclick="return confirm('Sei sicuro di voler effettuare il logout?');">
                 🚪 Logout 
             </a>
         <% } else { %>
@@ -59,7 +60,8 @@
         <%-- NUOVO: Link all'Area Riservata (Mobile) --%>
         <a href="<%= request.getContextPath() %>/area-riservata" class="mobile-nav-link">👤 Area Riservata</a>
         
-        <a href="<%= request.getContextPath() %>/logout" class="mobile-nav-link">🚪 Logout </a>
+        <a href="<%= request.getContextPath() %>/logout" class="mobile-nav-link"
+           onclick="return confirm('Sei sicuro di voler effettuare il logout?');">🚪 Logout </a>
     <% } else { %>
         <a href="<%= request.getContextPath() %>/login" class="mobile-nav-link">Login</a>
     <% } %>

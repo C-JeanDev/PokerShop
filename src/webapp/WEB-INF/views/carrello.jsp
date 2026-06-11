@@ -239,7 +239,8 @@
         <% if (!righe.isEmpty()) { %>
         <form method="post" action="<%= request.getContextPath() %>/carrello">
             <input type="hidden" name="azione" value="svuota">
-            <button type="submit" class="btn-svuota">✕ Svuota carrello</button>
+            <button type="submit" class="btn-svuota"
+                    onclick="return confirm('Sei sicuro di voler svuotare il carrello? Tutti gli articoli verranno rimossi.');">✕ Svuota carrello</button>
         </form>
         <% } %>
     </div>

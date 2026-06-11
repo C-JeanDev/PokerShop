@@ -145,7 +145,8 @@
             </div>
 
             <div class="ar-form-actions">
-                <button type="submit" class="ar-btn ar-btn-primary">💾 Salva Modifiche</button>
+                <button type="submit" class="ar-btn ar-btn-primary"
+                        onclick="return confirm('Confermi il salvataggio delle modifiche al profilo?');">💾 Salva Modifiche</button>
                 <button type="button" class="ar-btn ar-btn-ghost" onclick="toggleEdit()">Annulla</button>
             </div>
         </form>
