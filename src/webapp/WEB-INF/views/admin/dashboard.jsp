@@ -2,6 +2,7 @@
 <%@ page import="model.bean.BeanUtente" %>
 <%@ include file="header.jsp" %>
 
+
 <%
     BeanUtente utente = (BeanUtente) session.getAttribute("utente");
     int nProdotti = (Integer) request.getAttribute("nProdotti");

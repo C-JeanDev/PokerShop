@@ -217,3 +217,9 @@ L'hash corrisponde alla password `admin123`. Sostituiscilo con l'hash della tua 
 | `/admin/prodotti` | Admin | CRUD prodotti |
 | `/admin/utenti` | Admin | Gestione utenti |
 | `/admin/ordini` | Admin | Ordini con filtri |
+
+
+## Verifica funzionamento pagine di errore
+Errore 404: inserisci nell'url un path che non esiste
+Errore 403: Decommenta l'if nel file HomeServlet.java alla riga 33
+Errore 500: Decommenta l'if nel file HomeServlet.java alla riga 39

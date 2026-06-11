@@ -1,0 +1,212 @@
+@charset "UTF-8";
+
+/* =============================================
+   ERROR PAGES - PokerShop
+   Palette (consistent with header.css):
+     --bg-main:       #212121
+     --bg-surface:    #2a2a2a
+     --bg-deep:       #1a1a1a
+     --color-primary: #1B5E20
+     --color-gold:    #D4AF37
+     --color-text:    #FFFFFF
+     --color-muted:   #757575
+     --color-error:   #D32F2F
+   ============================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-main:       #212121;
+    --bg-surface:    #2a2a2a;
+    --bg-deep:       #1a1a1a;
+    --color-primary: #1B5E20;
+    --color-gold:    #D4AF37;
+    --color-light:   #F5F5F5;
+    --color-text:    #FFFFFF;
+    --color-muted:   #757575;
+    --color-error:   #D32F2F;
+    --color-success: #4CAF50;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg-main);
+    color: var(--color-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Main error area ───────────────────────── */
+.error-page {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.error-card {
+    background: var(--bg-surface);
+    border-radius: 16px;
+    padding: 56px 48px 48px;
+    max-width: 540px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Top accent stripe – changes per error type */
+.error-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--stripe-color, var(--color-gold));
+}
+
+/* ── Suit icon ─────────────────────────────── */
+.error-suit {
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 20px;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+}
+
+/* ── Error code ────────────────────────────── */
+.error-code {
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--code-color, var(--color-gold));
+    margin-bottom: 12px;
+}
+
+/* ── Title ─────────────────────────────────── */
+.error-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 14px;
+}
+
+/* ── Description ───────────────────────────── */
+.error-description {
+    color: var(--color-muted);
+    font-size: 0.975rem;
+    line-height: 1.65;
+    margin-bottom: 36px;
+}
+
+/* ── Divider ───────────────────────────────── */
+.error-divider {
+    width: 48px;
+    height: 2px;
+    background: var(--stripe-color, var(--color-gold));
+    margin: 0 auto 32px;
+    border-radius: 2px;
+}
+
+/* ── Action buttons ────────────────────────── */
+.error-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--color-primary);
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover {
+    background: var(--color-gold);
+    color: var(--bg-main);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 12px 28px;
+    background: transparent;
+    color: var(--color-muted);
+    text-decoration: none;
+    border: 1px solid rgba(117, 117, 117, 0.4);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+    transform: translateY(-1px);
+}
+
+/* ── Footer note (optional detail) ────────── */
+.error-footer-note {
+    margin-top: 32px;
+    font-size: 0.78rem;
+    color: rgba(117, 117, 117, 0.6);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
+}
+
+/* ── 404 variant ───────────────────────────── */
+.error-404 {
+    --stripe-color: var(--color-gold);
+    --code-color:   var(--color-gold);
+}
+
+/* ── 403 variant ───────────────────────────── */
+.error-403 {
+    --stripe-color: #B8860B;
+    --code-color:   #C9993A;
+}
+
+/* ── 500 variant ───────────────────────────── */
+.error-500 {
+    --stripe-color: var(--color-error);
+    --code-color:   #E57373;
+}
+
+/* ── Responsive ────────────────────────────── */
+@media (max-width: 560px) {
+    .error-card {
+        padding: 44px 28px 36px;
+    }
+    .error-code {
+        font-size: 4rem;
+    }
+    .error-suit {
+        font-size: 3.2rem;
+    }
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}

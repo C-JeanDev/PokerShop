@@ -28,6 +28,19 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	/* test dell' errore 403
+    	if (true) { 
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+            return; 
+        }*/
+    	
+    	/* test dell' errore 500
+    	if (true) { 
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            return; 
+        }*/
+        
 
         try {
             ProdottoDAO prodottoDAO = new ProdottoDAO();
