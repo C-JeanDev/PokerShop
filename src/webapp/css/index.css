@@ -82,3 +82,24 @@ header nav a:hover {
     color: #D4AF37;
     text-decoration: underline;
 }
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 14px 18px;
+    }
+    header nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 14px;
+    }
+    header nav a { margin-left: 0; }
+
+    .welcome {
+        margin: 30px 16px;
+        padding: 28px 20px;
+    }
+    .welcome h2 { font-size: 1.5rem; }
+}

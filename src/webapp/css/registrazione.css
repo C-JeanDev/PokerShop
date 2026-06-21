@@ -140,3 +140,47 @@ body {
     border-bottom: 1px solid #757575;
     padding-bottom: 4px;
 }
+/* ===== RESPONSIVE ===== */
+@media (max-width: 560px) {
+    body { padding: 20px 10px; }
+    .container {
+        padding: 24px 18px;
+        margin: 0;
+    }
+    .logo h1 { font-size: 1.5rem; }
+
+    /* Le coppie di campi affiancati diventano una colonna */
+    .row { flex-direction: column; gap: 0; }
+}
+
+/* ===== VALIDAZIONE LATO CLIENT (validation.js) ===== */
+
+/* Campo con errore */
+.input-error {
+    border-color: #e53935 !important;
+    box-shadow: 0 0 0 2px rgba(229, 57, 53, .20);
+}
+
+/* Messaggio di errore sotto il campo */
+.field-error {
+    display: block;
+    margin-top: 4px;
+    font-size: .78rem;
+    color: #e53935;
+}
+
+/* Feedback AJAX email */
+.email-feedback {
+    display: block;
+    margin-top: 4px;
+    font-size: .78rem;
+}
+.email-checking { color: #888; }
+.email-ok       { color: #2e7d32; font-weight: 600; }
+.email-error    { color: #e53935; font-weight: 600; }
+
+.back-home-link { margin-top: 8px; }
+
+/* Modificatori di larghezza per campi affiancati nella sezione indirizzo */
+.flex-2 { flex: 2; }
+.flex-1 { flex: 1; }

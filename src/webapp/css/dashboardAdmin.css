@@ -93,3 +93,11 @@ td {
     background: rgba(211,47,47,.2);
     border: 1px solid var(--color-error);
 }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+    .content, .card, .admin-card {
+        padding: 16px;
+    }
+    table { font-size: 0.85rem; }
+}

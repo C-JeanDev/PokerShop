@@ -60,6 +60,10 @@
         Non hai un account? <a href="<%= request.getContextPath() %>/registrazione">Registrati</a>
     </div>
 
+    <div class="register-link back-home-link">
+        <a href="<%= request.getContextPath() %>/index.jsp">← Torna alla home</a>
+    </div>
+
 </div>
 
 </body>

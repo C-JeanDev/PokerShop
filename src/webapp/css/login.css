@@ -142,3 +142,14 @@ body {
     color: #D4AF37;
     text-decoration: underline;
 }
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 28px 20px;
+        margin: 16px;
+        max-width: 100%;
+    }
+    .login-logo h1 { font-size: 1.6rem; }
+}
+
+.back-home-link { margin-top: 8px; }

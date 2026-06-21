@@ -7,33 +7,6 @@
     <title>Registrazione – PokerShop</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/registrazione.css">
 
-    <%-- CSS inline per i feedback di validazione lato client --%>
-    <style>
-        /* ── Campo con errore ──────────────────────────────────────────── */
-        .input-error {
-            border-color: #e53935 !important;
-            box-shadow: 0 0 0 2px rgba(229, 57, 53, .20);
-        }
-
-        /* ── Messaggio di errore sotto il campo ───────────────────────── */
-        .field-error {
-            display: block;
-            margin-top: 4px;
-            font-size: .78rem;
-            color: #e53935;
-        }
-
-        /* ── Feedback AJAX email ──────────────────────────────────────── */
-        .email-feedback {
-            display: block;
-            margin-top: 4px;
-            font-size: .78rem;
-        }
-        .email-checking { color: #888; }
-        .email-ok       { color: #2e7d32; font-weight: 600; }
-        .email-error    { color: #e53935; font-weight: 600; }
-    </style>
-
     <%--
         Meta tag usato da validation.js per ricavare il context path
         senza hardcoding nell'URL della chiamata AJAX.
@@ -129,7 +102,7 @@
         <div class="section-label">Indirizzo</div>
 
         <div class="row">
-            <div class="form-group" style="flex:2">
+            <div class="form-group flex-2">
                 <label for="indirizzo">Indirizzo *</label>
                 <input type="text" id="indirizzo" name="indirizzo"
                        placeholder="Via Roma"
@@ -137,7 +110,7 @@
                        autocomplete="street-address"
                        required>
             </div>
-            <div class="form-group" style="flex:1">
+            <div class="form-group flex-1">
                 <label for="nCivico">N° civico *</label>
                 <%--
                     Cambiato da type="number" a type="text" per supportare
@@ -152,7 +125,7 @@
         </div>
 
         <div class="row">
-            <div class="form-group" style="flex:1">
+            <div class="form-group flex-1">
                 <label for="cap">CAP *</label>
                 <input type="text" id="cap" name="cap"
                        placeholder="00100"
@@ -161,7 +134,7 @@
                        autocomplete="postal-code"
                        required>
             </div>
-            <div class="form-group" style="flex:2">
+            <div class="form-group flex-2">
                 <label for="citta">Città *</label>
                 <input type="text" id="citta" name="citta"
                        placeholder="Roma"
@@ -177,6 +150,10 @@
 
     <div class="login-link">
         Hai già un account? <a href="<%= request.getContextPath() %>/login">Accedi</a>
+    </div>
+
+    <div class="login-link back-home-link">
+        <a href="<%= request.getContextPath() %>/index.jsp">← Torna alla home</a>
     </div>
 
 </div>
